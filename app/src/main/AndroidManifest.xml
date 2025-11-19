@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="com.google.android.gms.permission.AD_ID"/>
+
+    <application
+        android:name=".savedMode"
+        android:allowBackup="true"
+        android:configChanges="orientation|screenSize|screenLayout|smallestScreenSize|keyboardHidden"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:exported="true"
+        android:fullBackupContent="@xml/backup_rules"
+        android:hardwareAccelerated="true"
+        android:icon="@drawable/icon_app"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/icon_app"
+        android:supportsRtl="false"
+        android:theme="@style/Theme.App_goalrush"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".sys.languageActivity"
+            android:configChanges="locale|layoutDirection"
+            android:exported="false" />
+        <activity
+            android:name=".sys.systemActivity"
+            android:theme="@style/Theme.App.splash"
+
+            android:exported="false" />
+        <activity
+            android:name=".team.teamActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AnotherActivity"
+            android:exported="false" />
+        <activity
+            android:name=".splashActivity"
+            android:exported="true"
+            android:theme="@style/Theme.App.splash"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".MainActivity2"
+            android:configChanges="orientation|screenSize|screenLayout|smallestScreenSize|keyboardHidden"
+            android:exported="false"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.App_goalrush.NoActionBar" />
+        <activity
+            android:name=".HomeActivity"
+            android:exported="false"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.App_goalrush.NoActionBar" />
+        <activity
+            android:name=".dayActivity"
+            android:exported="false"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.App.day" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="false"
+            android:label="@string/app_name" />
+    </application>
+
+</manifest>
