@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fillColor="@android:color/transparent"
+    android:background="@drawable/menu"
+    android:orientation="vertical"
+    android:padding="26dp"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="52dp"
+            android:layout_height="63dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/hopefortomorrow"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:layout_width="206dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="102dp"
+            android:paddingBottom="8dp"
+            android:text="Hope.for_tomorrow"
+            android:textAlignment="center"
+            android:textColor="@color/lighth1"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageView2"
+            app:layout_constraintTop_toTopOf="@+id/imageView2" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:id="@+id/button_action_one"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/transparent"
+        android:text="Settings"
+        android:textColor="@color/lightColor"
+        android:textStyle="normal" />
+
+    <Button
+        android:id="@+id/button_action_two"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/transparent"
+        android:text="language"
+        android:textColor="@color/lightColor" />
+
+    <Button
+        android:id="@+id/button_action_two2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/transparent"
+        android:text="About"
+        android:textColor="@color/lightColor" />
+
+</LinearLayout>

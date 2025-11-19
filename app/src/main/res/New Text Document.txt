@@ -1,0 +1,215 @@
+package com.example.app_goalrush.sys;
+
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.text.TextUtilsCompat;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+import com.example.app_goalrush.MainActivity;
+import com.example.app_goalrush.R;
+import com.example.app_goalrush.databinding.ActivityLanguageBinding;
+import com.example.app_goalrush.databinding.ActivityMainBinding;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+
+public class languageActivity extends AppCompatActivity implements View.OnClickListener {
+
+    private static final String PREFS_NAME = "AppPrefs";
+    private static final String KEY_LANGUAGE = "selected_language";
+    private SharedPreferences sharedPreferences; // Declaration of SharedPreferences
+    private TextView welcomeMessageTextView;
+    private TextView languageInfoTextView;
+    private Button btnAr, btnEn, btnFr;
+    private List<Button> languageButtons;
+    private String activeLanguage = "ar"; // اللغة الافتراضية
+
+    // إعلان ActivityMainBinding لتخطيط activity_main.xml
+    private ActivityMainBinding mainBinding;
+
+    // إعلان ActivityLanguageBinding لتخطيط activity_language.xml
+    private ActivityLanguageBinding languageBinding;
+    // قاموس (Map) يحتوي على الرسائل لكل لغة
+    private final Map<String, Map<String, String>> messages = new HashMap<>();
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+
+        // [1. تهيئة الـ Binding وتحميل التخطيط]
+        // هذا السطر يحل محل setContentVie(R.layout.activity_language) ويضمن الأمان
+        languageBinding = ActivityLanguageBinding.inflate(getLayoutInflater());
+        setContentView(languageBinding.getRoot());
+        mainBinding = ActivityMainBinding.inflate(getLayoutInflater());
+
+// [الخطوة 1: تهيئة SharedPreferences]
+        sharedPreferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+
+//         [الخطوة 2: تحميل اللغة المحفوظة]
+//         تحميل اللغة المحفوظة، إذا لم يتم العثور عليها، يستخدم "ar" كافتراضي
+        activeLanguage = sharedPreferences.getString(KEY_LANGUAGE, "ar");        // 2. تهيئة البيانات (الرسائل)
+        initializeMessages();
+
+
+        languageButtons = Arrays.asList(languageBinding.btnAr, languageBinding.btnEn, languageBinding.btnFr);
+
+        // [ملاحظة]: تم إزالة binding.btnAr.setText("اللغة العربية");
+        // لأن دالة updateUI(activeLanguage) التي يتم استدعاؤها لاحقًا تقوم بتعيين النص بشكل صحيح وديناميكي.
+
+        // 4. تعيين مستمعي النقر للأزرار
+        for (Button button : languageButtons) {
+            button.setOnClickListener(this);
+        }
+
+
+        // 5. تحميل الواجهة الابتدائية
+        updateUI(activeLanguage);
+
+    }
+
+        private void initializeMessages() {
+            String buttonText;
+
+            // رسائل اللغة العربية
+            Map<String, String> ar = new HashMap<>();
+            ar.put("welcome", "مرحباً بك في التطبيق! نتمنى لك تجربة ممتعة.");
+            ar.put("name", "العربية");
+            ar.put("info", "اللغة المختارة حاليًا: ");
+            ar.put("targetButtonText", "الذهاب للمتابعة");
+//            mainBinding.button.setText("المباريات");
+            messages.put("ar", ar);
+
+            // رسائل اللغة الإنجليزية
+            Map<String, String> en = new HashMap<>();
+            en.put("welcome", "Welcome to the Application! We wish you a pleasant experience.");
+            en.put("name", "English");
+            en.put("info", "Current Selected Language: ");
+            en.put("targetButtonText", "Proceed");
+//            mainBinding.button.setText("MATCHES");
+
+            messages.put("en", en);
+
+            // رسائل اللغة الفرنسية
+            Map<String, String> fr = new HashMap<>();
+            fr.put("welcome", "Bienvenue sur l'Application ! Nous vous souhaitons une agréable expérience.");
+            fr.put("name", "Français");
+            fr.put("info", "Langue sélectionnée actuellement: ");
+            fr.put("targetButtonText", "Continuer");
+            messages.put("fr", fr);
+        }
+
+    private void setLocale(String langCode) {
+        Locale locale = new Locale(langCode);
+        Locale.setDefault(locale);
+        android.content.res.Configuration config = new android.content.res.Configuration();
+        config.setLocale(locale);
+        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+
+        // حفظ اللغة في SharedPreferences
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(KEY_LANGUAGE, langCode);
+        editor.apply();
+    }
+
+    @Override
+    public void onClick(View v){
+        // استخدام خاصية الـ tag المضافة في ملف XML لتحديد اللغة
+        String langCode = (String) v.getTag();
+        if (langCode != null && !langCode.equals(activeLanguage)) {
+            LocaleHelper.setLocale(this, langCode); // ⬅️ هذا يحفظ ويغير اللغة
+            updateUI(langCode);
+//            setLocale(langCode);
+        }
+    }
+
+    private void updateUI(String language) {
+        Map<String, String> currentMessage = messages.get(langCode);
+
+//        SharedPreferences sharedPreferences = getSharedPreferences("AppPrefs", MODE_PRIVATE);
+//        SharedPreferences.Editor editor = sharedPreferences.edit();
+//        editor.putString(KEY_LANGUAGE, langCode); // استخدم المفتاح الثابت
+//        editor.apply();
+
+        if (currentMessage == null) return;
+        setLocale(langCode);
+        updateMainButtonText(langCode);
+
+        // 1. تحديث النصوص (عبر الـ Binding)
+        languageBinding.welcomeMessageTextView.setText(currentMessage.get("welcome"));
+        languageBinding.languageInfoTextView.setText(currentMessage.get("info") + currentMessage.get("name"));
+
+
+        // 2. تحديث اتجاه النص (RTL/LTR) لكل العناصر
+        boolean isRtl = isRtl(langCode);
+        int direction = isRtl ? View.TEXT_DIRECTION_RTL : View.TEXT_DIRECTION_LTR;
+
+        languageBinding.welcomeMessageTextView.setTextDirection(direction);
+        languageBinding.languageInfoTextView.setTextDirection(direction);
+        languageBinding.btnAr.setTextDirection(direction); // تطبيق الاتجاه على الزر المستهدف
+
+
+        // 3. تحديث حالة الأزرار (تلوين الزر النشط)
+        for (Button button : languageButtons) {
+            String buttonLang = (String) button.getTag();
+            if (buttonLang != null && buttonLang.equals(langCode)) {
+                // الزر النشط (افترضنا وجود الألوان في res/values/colors.xml)
+                button.setBackgroundTintList(getResources().getColorStateList(R.color.lightColor, null));
+                button.setTextColor(getResources().getColor(android.R.color.white, null));
+            } else {
+                // الأزرار غير النشطة
+                button.setBackgroundTintList(getResources().getColorStateList(R.color.lightColor, null));
+                button.setTextColor(getResources().getColor(android.R.color.black, null));
+            }
+        }
+
+        // تحديث اللغة النشطة
+        activeLanguage = langCode;
+    }
+
+
+    private boolean isRtl(String langCode) {
+        final int layoutDirection = TextUtilsCompat.getLayoutDirectionFromLocale(new Locale(langCode));
+        return layoutDirection == ViewCompat.LAYOUT_DIRECTION_RTL;
+    }
+
+    private void updateMainButtonText(String langCode) {
+        String buttonText;
+        // 1. الافتراضي (Default) هو اللغة الإنجليزية (en)
+        if (langCode.equals("en")) {
+            buttonText = "MATCHES";
+        }
+        // 2. إذا كانت اللغة فرنسية (fr)
+        else if (langCode.equals("fr")) {
+            buttonText = "MATCHS";
+        }
+        // 3. إذا كانت اللغة عربية (ar)
+        else if (langCode.equals("ar")) {
+            buttonText = "المباريات";
+        }
+        // 4. إذا لم يتم العثور على أي تطابق (Fallback)
+        else {
+            // يمكن تعيين أي لغة افتراضية هنا، لنفترض "MATCHES" (الإنجليزية)
+            buttonText = "MATCHES";
+        }
+
+        if (mainBinding != null && mainBinding.button != null) {
+            mainBinding.button.setText(buttonText);
+        }
+    }
+
+
+}

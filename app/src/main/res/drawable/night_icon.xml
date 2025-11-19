@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item>
+
+        <shape
+            android:shape="oval">
+            <solid
+                android:color="@color/menu_btn"/>
+                <size
+                    android:width="30dp"
+                    android:height="30dp" />
+            <stroke
+                android:width="5dp"
+                android:color="#c3d1ec"/>
+        </shape>
+    </item>
+
+<!--    <item-->
+<!--        android:drawable="@drawable/night_24"-->
+<!--        android:top="9dp"-->
+<!--        android:bottom="8dp"-->
+<!--        android:right="8dp"-->
+<!--        android:left="7dp"-->
+<!--        />-->
+
+
+
+</layer-list>

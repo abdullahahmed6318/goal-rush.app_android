@@ -1,0 +1,33 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.App_goalrush" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/lightboby</item>
+        <item name="colorPrimaryVariant">@color/btn_today</item>
+        <item name="colorOnPrimary">@color/btn_t</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_200</item>
+        <item name="colorOnSecondary">@color/btn_t</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="Theme.App.splash" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="colorPrimary">#EF6E2F</item>
+        <item name="colorPrimaryVariant">#EF6E2F</item>
+        <item name="colorOnPrimary">#EF6E2F</item>
+        <item name="colorSecondary">#EF6E2F</item>
+        <item name="colorSecondaryVariant">#EF6E2F</item>
+        <item name="colorOnSecondary">#EF6E2F</item>
+        <item name="android:statusBarColor">#EF6E2F</item>
+
+    </style>
+
+    <style name="ThemeOverlay.App_goalrush.FullscreenContainer" parent="">
+        <item name="fullscreenBackgroundColor">@color/light_blue_900</item>
+        <item name="fullscreenTextColor">@color/light_blue_A400</item>
+    </style>
+
+</resources>

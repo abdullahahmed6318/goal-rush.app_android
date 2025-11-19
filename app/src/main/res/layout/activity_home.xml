@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#D52F2F"
+    tools:context=".HomeActivity">
+
+
+
+<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="260dp"-->
+<!--        android:layout_marginTop="60dp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent">-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/side_bar_league"-->
+<!--            android:layout_width="377dp"-->
+<!--            android:layout_height="28dp"-->
+<!--            android:layout_marginEnd="8dp"-->
+<!--            android:text="TextView"-->
+<!--            android:textAlignment="viewEnd"-->
+<!--            android:textSize="24sp"-->
+<!--            android:textStyle="bold"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            android:id="@+id/constraintLayout"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="86dp"-->
+<!--            android:layout_marginTop="50dp"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent">-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/team_image_view"-->
+<!--                android:layout_width="69dp"-->
+<!--                android:layout_height="56dp"-->
+<!--                android:layout_marginEnd="50dp"-->
+<!--                app:layout_constraintEnd_toStartOf="@+id/vs"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/json_data_textview"-->
+<!--                android:layout_width="72dp"-->
+<!--                android:layout_height="25dp"-->
+<!--                android:layout_marginEnd="50dp"-->
+<!--                android:text="TextView"-->
+<!--                android:textAlignment="center"-->
+<!--                android:textSize="16sp"-->
+<!--                android:textStyle="bold"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toStartOf="@+id/vs" />-->
+
+
+<!--            <TextView-->
+<!--                android:id="@+id/vs"-->
+<!--                android:layout_width="103dp"-->
+<!--                android:layout_height="40dp"-->
+<!--                android:text="vs"-->
+<!--                android:textAlignment="center"-->
+<!--                android:textSize="34sp"-->
+<!--                android:textStyle="bold"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/team_image_viewSecond"-->
+<!--                android:layout_width="69dp"-->
+<!--                android:layout_height="56dp"-->
+<!--                android:layout_marginStart="50dp"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/vs"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/json_data_textviewSecond"-->
+<!--                android:layout_width="72dp"-->
+<!--                android:layout_height="25dp"-->
+<!--                android:layout_marginStart="50dp"-->
+<!--                android:text="TextView"-->
+<!--                android:textAlignment="center"-->
+<!--                android:textSize="16sp"-->
+<!--                android:textStyle="bold"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/vs" />-->
+
+<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            android:id="@+id/constraintLayout2"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="86dp"-->
+<!--            android:layout_marginTop="32dp"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/constraintLayout">-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/team_image_view2"-->
+<!--                android:layout_width="69dp"-->
+<!--                android:layout_height="56dp"-->
+<!--                android:layout_marginEnd="50dp"-->
+<!--                app:layout_constraintEnd_toStartOf="@+id/vs2"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/json_data_textview2"-->
+<!--                android:layout_width="72dp"-->
+<!--                android:layout_height="25dp"-->
+<!--                android:layout_marginEnd="50dp"-->
+<!--                android:text="TextView"-->
+<!--                android:textAlignment="center"-->
+<!--                android:textSize="16sp"-->
+<!--                android:textStyle="bold"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toStartOf="@+id/vs2" />-->
+
+
+<!--            <TextView-->
+<!--                android:id="@+id/vs2"-->
+<!--                android:layout_width="103dp"-->
+<!--                android:layout_height="40dp"-->
+<!--                android:text="vs"-->
+<!--                android:textAlignment="center"-->
+<!--                android:textSize="34sp"-->
+<!--                android:textStyle="bold"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/team_image_viewSecond2"-->
+<!--                android:layout_width="69dp"-->
+<!--                android:layout_height="56dp"-->
+<!--                android:layout_marginStart="50dp"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/vs2"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/json_data_textviewSecond2"-->
+<!--                android:layout_width="72dp"-->
+<!--                android:layout_height="25dp"-->
+<!--                android:layout_marginStart="50dp"-->
+<!--                android:text="TextView"-->
+<!--                android:textAlignment="center"-->
+<!--                android:textSize="16sp"-->
+<!--                android:textStyle="bold"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/vs2" />-->
+<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
+    <LinearLayout
+        android:id="@+id/main_linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.085" />
+
+</androidx.core.widget.NestedScrollView>

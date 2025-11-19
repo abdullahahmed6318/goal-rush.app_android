@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/t_navigation"
+    app:startDestination="@+id/today"
+    >
+    <fragment
+        android:id="@+id/navigation_today"
+        android:name="com.example.app_goalrush.day.todayFragment"
+        android:label="today"
+        tools:layout="@layout/fragment_today" />
+
+    <fragment
+        android:id="@+id/navigation_yesterday"
+        android:name="com.example.app_goalrush.day.yesterdayFragment"
+        android:label="ty"
+        tools:layout="@layout/fragment_yesterday" />
+
+    <fragment
+        android:id="@+id/navigation_tomorrow"
+        android:name="com.example.app_goalrush.day.tomorrowFragment"
+        android:label="y"
+        tools:layout="@layout/fragment_tomorrow" />
+</navigation>

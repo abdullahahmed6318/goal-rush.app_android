@@ -1,0 +1,51 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="Theme.App_goalrush" parent="Theme.Material3.DynamicColors.Dark.NoActionBar">
+        <item name="colorPrimary">@color/lightboby</item>
+        <item name="colorPrimaryVariant">@color/lightboby</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/btn_t</item>
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:navigationBarColor">#FFFFFF</item>
+
+    </style>
+
+    <style name="Theme.App_goalrush.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.App_goalrush.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.App_goalrush.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="Theme.App.splash" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="colorPrimary">#EF6E2F</item>
+        <item name="colorPrimaryVariant">#19427F</item>
+        <item name="colorOnPrimary">#EF6E2F</item>
+        <item name="colorSecondary">#FFEB3B</item>
+        <item name="colorSecondaryVariant">#EF6E2F</item>
+        <item name="colorOnSecondary">#673AB7</item>
+        <item name="android:statusBarColor">#FFB878</item>
+        <item name="android:navigationBarColor">#E47D22</item>
+    </style>
+
+    <style name="Theme.App.day" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/menu_btn</item>
+        <item name="colorPrimaryVariant">#19427F</item>
+        <item name="colorOnPrimary">@color/btn_t</item>
+        <item name="colorSecondaryVariant">#EF6E2F</item>
+        <item name="colorOnSecondary">@color/btn_t</item>
+        <item name="android:statusBarColor">@color/lightboby</item>
+        <item name="android:navigationBarColor">@color/lightboby</item>
+    </style>
+
+    <style name="ThemeOverlay.App_goalrush.FullscreenContainer" parent="">
+        <item name="fullscreenBackgroundColor">@color/light_blue_600</item>
+        <item name="fullscreenTextColor">@color/light_blue_A200</item>
+    </style>
+
+
+</resources>

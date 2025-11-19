@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item>
+
+        <shape
+            android:shape="oval">
+            <solid
+                android:color="#fff"/>
+            <size
+                android:width="30dp"
+                android:height="30dp" />
+            <stroke
+                android:width="5dp"
+                android:color="#695CFE"/>
+        </shape>
+    </item>
+
+<!--    <item-->
+<!--        android:drawable="@drawable/sunny_24"-->
+<!--        android:top="10dp"-->
+<!--        android:bottom="10dp"-->
+<!--        android:right="8dp"-->
+<!--        android:left="8dp"-->
+<!--        />-->
+
+
+
+</layer-list>

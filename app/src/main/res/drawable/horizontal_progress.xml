@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- خلفية الشريط -->
+    <item android:id="@android:id/background"
+        android:height="5dp">
+
+        <shape android:shape="rectangle">
+            <corners android:radius="0dp" />
+            <solid android:color="#49492A" />
+        </shape>
+
+    </item>
+
+    <!-- شريط التقدم -->
+    <item android:id="@android:id/progress"
+        android:height="5dp">
+        <clip>
+            <shape android:shape="rectangle">
+                <corners android:radius="5dp" />
+                <solid android:color="#FFFD70" />
+            </shape>
+        </clip>
+    </item>
+</layer-list>

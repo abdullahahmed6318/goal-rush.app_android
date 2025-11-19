@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- هذا الملف يمثل تصميم عنصر المباراة الواحد داخل الـ RecyclerView -->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/match_root_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/container_t"
+    android:paddingTop="16dp"
+    android:paddingBottom="16dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp">
+
+    <!-- اسم الدوري - في الأعلى -->
+
+
+    <TextView
+        android:id="@+id/league_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:textColor="@color/lightColor"
+        tools:text="UEFA Champions League - Round 2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="8dp"/>
+
+    <!-- تخطيط للفرق (الصف الأول) -->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/teams_row_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@color/lightboby"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/league_text_view">
+
+        <!-- صورة الفريق الأول -->
+        <ImageView
+            android:id="@+id/team1_img_view"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:contentDescription="@string/menu_today"
+            android:scaleType="fitCenter"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/football_team" />
+
+        <!-- اسم الفريق الأول -->
+
+        <!-- VS -->
+        <TextView
+            android:id="@+id/team1_name_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="16dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textAlignment="center"
+            android:textColor="@color/lightColor"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/team1_img_view"
+            app:layout_constraintStart_toStartOf="@id/team1_img_view"
+            app:layout_constraintTop_toBottomOf="@+id/team1_img_view"
+            app:layout_constraintVertical_bias="0.0"
+            tools:text="Barcelona" />
+
+        <TextView
+            android:id="@+id/vs_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="vs"
+            android:textColor="@color/lightColor"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/team2_img_view"
+            app:layout_constraintStart_toEndOf="@id/team1_img_view"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- صورة الفريق الثاني -->
+
+        <!-- اسم الفريق الثاني -->
+
+        <ImageView
+            android:id="@+id/team2_img_view"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="32dp"
+            android:contentDescription="@string/menu_today"
+            android:scaleType="fitCenter"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/football_team" />
+
+        <TextView
+            android:id="@+id/team2_name_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="16dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textAlignment="center"
+            android:textColor="@color/lightColor"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/team2_img_view"
+            app:layout_constraintStart_toStartOf="@+id/team2_img_view"
+            app:layout_constraintTop_toBottomOf="@+id/team2_img_view"
+            tools:text="Paris" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/teams_row_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@color/lightboby"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/teams_row_1">
+
+        <!-- صورة الفريق الأول -->
+        <ImageView
+            android:id="@+id/team3_img_view"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:contentDescription="@string/menu_today"
+            android:scaleType="fitCenter"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/football_team" />
+
+        <!-- اسم الفريق الأول -->
+
+        <!-- VS -->
+        <TextView
+            android:id="@+id/team3_name_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="16dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textAlignment="center"
+            android:textColor="@color/lightColor"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/team3_img_view"
+            app:layout_constraintStart_toStartOf="@id/team3_img_view"
+            app:layout_constraintTop_toBottomOf="@+id/team3_img_view"
+            app:layout_constraintVertical_bias="0.0"
+            tools:text="egypt" />
+
+        <TextView
+            android:id="@+id/vs2_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="vs"
+            android:textColor="@color/lightColor"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/team4_img_view"
+            app:layout_constraintStart_toEndOf="@id/team3_img_view"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- صورة الفريق الثاني -->
+
+        <!-- اسم الفريق الثاني -->
+
+        <ImageView
+            android:id="@+id/team4_img_view"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="32dp"
+            android:contentDescription="@string/menu_today"
+            android:scaleType="fitCenter"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/football_team" />
+
+        <TextView
+            android:id="@+id/team4_name_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="16dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textAlignment="center"
+            android:textColor="@color/lightColor"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/team4_img_view"
+            app:layout_constraintStart_toStartOf="@+id/team4_img_view"
+            app:layout_constraintTop_toBottomOf="@+id/team4_img_view"
+            tools:text="Paris" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/teams_row_3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@color/lightboby"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/teams_row_2">
+
+        <!-- صورة الفريق الأول -->
+        <ImageView
+            android:id="@+id/team5_img_view"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:contentDescription="@string/menu_today"
+            android:scaleType="fitCenter"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/football_team" />
+
+        <!-- اسم الفريق الأول -->
+
+        <!-- VS -->
+        <TextView
+            android:id="@+id/team5_name_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="16dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textAlignment="center"
+            android:textColor="@color/lightColor"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/team5_img_view"
+            app:layout_constraintStart_toStartOf="@id/team5_img_view"
+            app:layout_constraintTop_toBottomOf="@+id/team5_img_view"
+            app:layout_constraintVertical_bias="0.0"
+            tools:text="Barcelona" />
+
+        <TextView
+            android:id="@+id/vs3_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="vs"
+            android:textColor="@color/lightColor"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/team6_img_view"
+            app:layout_constraintStart_toEndOf="@id/team5_img_view"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- صورة الفريق الثاني -->
+
+        <!-- اسم الفريق الثاني -->
+
+        <ImageView
+            android:id="@+id/team6_img_view"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="32dp"
+            android:contentDescription="@string/menu_today"
+            android:scaleType="fitCenter"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/football_team" />
+
+        <TextView
+            android:id="@+id/team6_name_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="16dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textAlignment="center"
+            android:textColor="@color/lightColor"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/team6_img_view"
+            app:layout_constraintStart_toStartOf="@+id/team6_img_view"
+            app:layout_constraintTop_toBottomOf="@+id/team6_img_view"
+            tools:text="Paris" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/teams_row_4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@color/lightboby"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/teams_row_3">
+
+        <!-- صورة الفريق الأول -->
+        <ImageView
+            android:id="@+id/team7_img_view"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:contentDescription="@string/menu_today"
+            android:scaleType="fitCenter"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/football_team" />
+
+        <!-- اسم الفريق الأول -->
+
+        <!-- VS -->
+        <TextView
+            android:id="@+id/team7_name_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="16dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textAlignment="center"
+            android:textColor="@color/lightColor"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/team7_img_view"
+            app:layout_constraintStart_toStartOf="@id/team7_img_view"
+            app:layout_constraintTop_toBottomOf="@+id/team7_img_view"
+            app:layout_constraintVertical_bias="0.0"
+            tools:text="Barcelona" />
+
+        <TextView
+            android:id="@+id/vs4_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="vs"
+            android:textColor="@color/lightColor"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/team8_img_view"
+            app:layout_constraintStart_toEndOf="@id/team7_img_view"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- صورة الفريق الثاني -->
+
+        <!-- اسم الفريق الثاني -->
+
+        <ImageView
+            android:id="@+id/team8_img_view"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="32dp"
+            android:contentDescription="@string/menu_today"
+            android:scaleType="fitCenter"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/football_team" />
+
+        <TextView
+            android:id="@+id/team8_name_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="16dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textAlignment="center"
+            android:textColor="@color/lightColor"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/team8_img_view"
+            app:layout_constraintStart_toStartOf="@+id/team8_img_view"
+            app:layout_constraintTop_toBottomOf="@+id/team8_img_view"
+            tools:text="Paris" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/teams_row_5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@color/lightboby"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/teams_row_4">
+
+        <!-- صورة الفريق الأول -->
+        <ImageView
+            android:id="@+id/team9_img_view"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:contentDescription="@string/menu_today"
+            android:scaleType="fitCenter"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/football_team" />
+
+        <!-- اسم الفريق الأول -->
+
+        <!-- VS -->
+        <TextView
+            android:id="@+id/team9_name_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="16dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textAlignment="center"
+            android:textColor="@color/lightColor"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/team9_img_view"
+            app:layout_constraintStart_toStartOf="@id/team9_img_view"
+            app:layout_constraintTop_toBottomOf="@+id/team9_img_view"
+            app:layout_constraintVertical_bias="0.0"
+            tools:text="Barcelona" />
+
+        <TextView
+            android:id="@+id/vs5_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="vs"
+            android:textColor="@color/lightColor"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/team10_img_view"
+            app:layout_constraintStart_toEndOf="@id/team9_img_view"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- صورة الفريق الثاني -->
+
+        <!-- اسم الفريق الثاني -->
+
+        <ImageView
+            android:id="@+id/team10_img_view"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="32dp"
+            android:contentDescription="@string/menu_today"
+            android:scaleType="fitCenter"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/football_team" />
+
+        <TextView
+            android:id="@+id/team10_name_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="16dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textAlignment="center"
+            android:textColor="@color/lightColor"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/team10_img_view"
+            app:layout_constraintStart_toStartOf="@+id/team10_img_view"
+            app:layout_constraintTop_toBottomOf="@+id/team10_img_view"
+            tools:text="Paris" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
