@@ -1,0 +1,344 @@
+
+
+    private void fetchJsonFromUrl(String urlString) {
+        new Thread(() -> {
+            HttpURLConnection urlConnection = null;
+            BufferedReader reader = null;
+            String jsonString = null;
+
+            try {
+                URL url = new URL(urlString);
+                urlConnection = (HttpURLConnection) url.openConnection();
+                urlConnection.connect();
+
+                InputStream inputStream = urlConnection.getInputStream();
+                if (inputStream == null) {
+                    return;
+                }
+                reader = new BufferedReader(new InputStreamReader(inputStream));
+                StringBuilder builder = new StringBuilder();
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    builder.append(line);
+                }
+                jsonString = builder.toString();
+
+                parseAndDisplayJson(jsonString);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                runOnUiThread(() -> {
+                    // في حالة الخطأ، أضف TextView إلى التخطيط الديناميكي
+                    TextView errorTextView = new TextView(this);
+                    errorTextView.setText("حدث خطأ في الاتصال بالشبكة.");
+                    mainLayout.addView(errorTextView);
+                });
+            } finally {
+                if (urlConnection != null) {
+                    urlConnection.disconnect();
+                }
+                if (reader != null) {
+                    try {
+                        reader.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }).start();
+    }
+
+    private void parseAndDisplayJson(String jsonString) {
+        try {
+            JSONObject mainJsonObject = new JSONObject(jsonString);
+            JSONArray videosArray = mainJsonObject.getJSONArray("videos");
+
+            runOnUiThread(() -> {
+                for (int i = 0; i < videosArray.length(); i++) {
+                    try {
+                        JSONObject videoObject = videosArray.getJSONObject(i);
+//
+//                        JSONObject aTeamObject = videoObject.getJSONObject("a_team");
+//                        String teamName = aTeamObject.getString("name_team_First");
+//                        String teamImg = aTeamObject.getString("First_img");
+
+                        String league = videoObject.getString("side_bar_league");
+                        String teamName = videoObject.getString("name_team_First");
+                        String teamImg = videoObject.getString("First_img");
+                        String teamNameSecond = videoObject.getString("name_team_Second");
+                        String teamImgSecond = videoObject.getString("Second_img");
+                        String teamNamethird = videoObject.getString("name_team_third");
+                        String teamImgthird = videoObject.getString("third_img");
+                        String teamNamefourth = videoObject.getString("name_team_fourth");
+                        String teamImgfourth = videoObject.getString("fourth_img");
+
+                        // إنشاء تخطيط كامل لكل فيديو
+                        ConstraintLayout matchLayout = createMatchLayout(
+                                this,
+                                league,
+                                teamName,
+                                teamImg,
+                                teamNameSecond,
+                                teamImgSecond,
+                                teamNamethird,
+                                teamImgthird,
+                                teamNamefourth,
+                                teamImgfourth
+
+                        );
+                        mainLayout.addView(matchLayout);
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+            runOnUiThread(() -> {
+                TextView errorTextView = new TextView(this);
+                errorTextView.setText("حدث خطأ أثناء تحليل بيانات JSON.");
+                mainLayout.addView(errorTextView);
+            });
+        }
+    }
+
+    private ConstraintLayout createMatchLayout(Context context, String league, String team1Name, String team1ImgUrl, String team2Name, String team2ImgUrl, String teamNamethird3, String teamImgthird3, String teamNamefourth4, String teamImgfourth4) {
+        // إنشاء تخطيط ConstraintLayout جديد
+        ConstraintLayout layout = new ConstraintLayout(context);
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+        );
+        layoutParams.setMargins(0, 0, 0, 0);
+        layout.setLayoutParams(layoutParams);
+        layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // فتح نافذة جديدة وإرسال البيانات إليها
+                Intent intent = new Intent(context, AnotherActivity.class);
+                intent.putExtra("LEAGUE_NAME", league);
+                intent.putExtra("TEAM1_NAME", team1Name);
+                intent.putExtra("TEAM2_NAME", team2Name);
+                intent.putExtra("TEAM1_IMG", team1ImgUrl);
+                intent.putExtra("TEAM2_IMG", team2ImgUrl);
+                context.startActivity(intent);
+            }
+        });
+
+
+        // إنشاء TextView للدوري
+        TextView leagueTextView = new TextView(context);
+        leagueTextView.setId(View.generateViewId());
+        leagueTextView.setText(league);
+        leagueTextView.setTextSize(18);
+        leagueTextView.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
+//        leagueTextView.setTextStyle(android.graphics.Typeface.BOLD);
+        layoutParams.setMargins(0, 0, 0, 0);
+        layout.setLayoutParams(layoutParams);
+        leagueTextView.setTextColor(android.graphics.Color.BLACK);
+        leagueTextView.setLayoutParams(new ConstraintLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+        ));
+
+        // إنشاء تخطيط داخلي للمباراة (الفريق الأول vs الفريق الثاني)
+        ConstraintLayout teamsLayout = new ConstraintLayout(context);
+        teamsLayout.setId(View.generateViewId());
+        teamsLayout.setBackgroundColor(android.graphics.Color.parseColor("#65DDDDDD"));
+        layoutParams.setMargins(0, 110, 0, 0);
+        teamsLayout.setLayoutParams(layoutParams);
+        teamsLayout.setLayoutParams(new ConstraintLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+        ));
+
+        //  TextView team_First //
+        TextView team1NameView = new TextView(context);
+        team1NameView.setId(View.generateViewId());
+        team1NameView.setText(team1Name);
+        team1NameView.setTextSize(16);
+        team1NameView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+//        team1NameView.setTextStyle(android.graphics.Typeface.BOLD);
+
+        //  ImageView team_First //
+        ImageView team1ImgView = new ImageView(context);
+        team1ImgView.setId(View.generateViewId());
+        LinearLayout.LayoutParams imgParams = new LinearLayout.LayoutParams(150, 150);
+        team1ImgView.setVisibility(View.VISIBLE);
+        team1ImgView.setLayoutParams(imgParams);
+        imgParams.setMargins(0, 0, 0, 0);
+        loadAndSetImage(team1ImgUrl, team1ImgView);
+
+        //  TextView team_Second //
+        TextView team2NameView = new TextView(context);
+        team2NameView.setId(View.generateViewId());
+        team2NameView.setText(team2Name);
+        team2NameView.setTextSize(16);
+        team2NameView.setVisibility(View.VISIBLE);
+        team2NameView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        team2NameView.setTypeface(null, Typeface.BOLD);
+
+        // team_Second ImageView  //
+        ImageView team2ImgView = new ImageView(context);
+        team2ImgView.setId(View.generateViewId());
+        team2ImgView.setVisibility(View.VISIBLE);
+        LinearLayout.LayoutParams imgParams2 = new LinearLayout.LayoutParams(150, 150);
+        imgParams2.setMargins(550, 0, 0, 0);
+        team2ImgView.setLayoutParams(imgParams2);
+        loadAndSetImage(team2ImgUrl, team2ImgView);
+
+        // TextView team_third   //
+        TextView teamNamethird = new TextView(context);
+        teamNamethird.setId(View.generateViewId());
+        teamNamethird.setText(teamNamethird3);
+        teamNamethird.setTextSize(16);
+        teamNamethird.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        teamNamethird.setTypeface(null, Typeface.BOLD);
+
+        // team_third ImageView  //
+        ImageView teamImgthird = new ImageView(context);
+        teamImgthird.setId(View.generateViewId());
+        teamImgthird.setVisibility(View.VISIBLE);
+        LinearLayout.LayoutParams imgParams3 = new LinearLayout.LayoutParams(150, 150);
+        imgParams3.setMargins(0, 0, 0, 0);
+        teamImgthird.setLayoutParams(imgParams3);
+        loadAndSetImage(teamImgthird3, teamImgthird);
+
+        // TextView team_fourth   //
+        TextView teamNamefourth = new TextView(context);
+        teamNamefourth.setId(View.generateViewId());
+        teamNamefourth.setText(teamNamefourth4);
+        teamNamefourth.setTextSize(16);
+        teamNamefourth.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        teamNamefourth.setTypeface(null, Typeface.BOLD);
+
+        // team_fourth ImageView  //
+        ImageView teamImgfourth = new ImageView(context);
+        teamImgfourth.setId(View.generateViewId());
+        teamImgfourth.setVisibility(View.VISIBLE);
+        LinearLayout.LayoutParams imgParams4 = new LinearLayout.LayoutParams(150, 150);
+        imgParams4.setMargins(0, 0, 0, 0);
+        teamImgfourth.setLayoutParams(imgParams4);
+        loadAndSetImage(teamImgfourth4, teamImgfourth);
+
+
+
+
+        // إنشاء TextView لـ "vs"
+        TextView vsTextView = new TextView(context);
+        vsTextView.setId(View.generateViewId());
+        vsTextView.setText("vs");
+        vsTextView.setTextSize(34);
+        vsTextView.setTextColor(android.graphics.Color.WHITE);
+        vsTextView.setTypeface(null, Typeface.BOLD);
+        vsTextView.setLayoutParams(new ConstraintLayout.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+        ));
+
+
+        // إضافة العروض إلى التخطيط الداخلي
+        teamsLayout.addView(team1NameView);
+        teamsLayout.addView(team1ImgView);
+        teamsLayout.addView(vsTextView);
+        teamsLayout.addView(team2NameView);
+        teamsLayout.addView(team2ImgView);
+        teamsLayout.addView(teamNamethird);
+        teamsLayout.addView(teamImgthird);
+        teamsLayout.addView(teamNamefourth);
+        teamsLayout.addView(teamImgfourth);
+
+        // تطبيق القيود (Constraints)
+        ConstraintSet teamsSet = new ConstraintSet();
+        teamsSet.clone(teamsLayout);
+
+
+
+        teamsSet.connect(vsTextView.getId(), ConstraintSet.TOP, teamsLayout.getId(), ConstraintSet.TOP,50);
+        teamsSet.connect(vsTextView.getId(), ConstraintSet.BOTTOM, teamsLayout.getId(), ConstraintSet.BOTTOM,0);
+        teamsSet.connect(vsTextView.getId(), ConstraintSet.START, teamsLayout.getId(), ConstraintSet.START,0);
+        teamsSet.connect(vsTextView.getId(), ConstraintSet.END, teamsLayout.getId(), ConstraintSet.END,11);
+        teamsSet.setHorizontalBias(vsTextView.getId(), 0.5f);
+        teamsSet.setVerticalBias(vsTextView.getId(), 0.5f);
+
+
+//        // قيود الفريق الأول
+        teamsSet.connect(team1NameView.getId(), ConstraintSet.START, vsTextView.getId(), ConstraintSet.END, -500);
+        teamsSet.connect(team1NameView.getId(), ConstraintSet.TOP, teamsLayout.getId(), ConstraintSet.TOP, 200);
+/// //////////////////
+        teamsSet.connect(team1ImgView.getId(), ConstraintSet.START, vsTextView.getId(), ConstraintSet.END, -500);
+        teamsSet.connect(team1ImgView.getId(), ConstraintSet.TOP, teamsLayout.getId(), ConstraintSet.TOP, 50);
+///// //////////////////
+        // قيود الفريق الثاني
+        teamsSet.connect(team2NameView.getId(), ConstraintSet.START, vsTextView.getId(), ConstraintSet.END, 200);
+        teamsSet.connect(team2NameView.getId(), ConstraintSet.TOP, teamsLayout.getId(), ConstraintSet.TOP, 200);
+/// //////////////////
+        teamsSet.connect(team2ImgView.getId(), ConstraintSet.START, vsTextView.getId(), ConstraintSet.END,  200);
+        teamsSet.connect(team2ImgView.getId(), ConstraintSet.TOP, teamsLayout.getId(), ConstraintSet.TOP, 50);
+
+//
+        teamsSet.connect(teamNamethird.getId(), ConstraintSet.START, vsTextView.getId(), ConstraintSet.END, -500);
+        teamsSet.connect(teamNamethird.getId(), ConstraintSet.TOP, teamsLayout.getId(), ConstraintSet.TOP, 450);
+/// //////////////////
+        teamsSet.connect(teamImgthird.getId(), ConstraintSet.START, vsTextView.getId(), ConstraintSet.END, -500);
+        teamsSet.connect(teamImgthird.getId(), ConstraintSet.TOP, teamsLayout.getId(), ConstraintSet.TOP, 300);
+//
+        teamsSet.connect(teamNamefourth.getId(), ConstraintSet.START, vsTextView.getId(), ConstraintSet.END, 200);
+        teamsSet.connect(teamNamefourth.getId(), ConstraintSet.TOP, teamsLayout.getId(), ConstraintSet.TOP, 450);
+/// //////////////////
+        teamsSet.connect(teamImgfourth.getId(), ConstraintSet.START, vsTextView.getId(), ConstraintSet.END,  200);
+        teamsSet.connect(teamImgfourth.getId(), ConstraintSet.TOP, teamsLayout.getId(), ConstraintSet.TOP, 300);
+
+
+
+
+        teamsSet.applyTo(teamsLayout);
+
+        // إضافة التخطيط الداخلي وتكمله إلى التخطيط الرئيسي
+        layout.addView(leagueTextView);
+        layout.addView(teamsLayout);
+
+        // تطبيق القيود (Constraints) على التخطيط الرئيسي
+        ConstraintSet mainSet = new ConstraintSet();
+        mainSet.clone(layout);
+
+
+
+//        mainSet.connect(teamsLayout.getId(), ConstraintSet.TOP, layout.getId(), ConstraintSet.TOP, 50);
+//        mainSet.centerHorizontally(teamsLayout.getId(), layout.getId());
+
+        mainSet.applyTo(layout);
+
+        return layout;
+    }
+
+    private void loadAndSetImage(String imageUrlString, ImageView imageView) {
+        new Thread(() -> {
+            try {
+                URL imageUrl = new URL(imageUrlString);
+                HttpURLConnection imageConnection = (HttpURLConnection) imageUrl.openConnection();
+                imageConnection.connect();
+                InputStream imageStream = imageConnection.getInputStream();
+                Bitmap bitmap = BitmapFactory.decodeStream(imageStream);
+
+                runOnUiThread(() -> {
+                    imageView.setImageBitmap(bitmap);
+                });
+
+                imageStream.close();
+                imageConnection.disconnect();
+            } catch (IOException e) {
+                e.printStackTrace();
+                runOnUiThread(() -> {
+                    imageView.setImageResource(android.R.drawable.ic_menu_close_clear_cancel);
+                });
+            }
+        }).start();
+    }
+
+
+
+
+}
